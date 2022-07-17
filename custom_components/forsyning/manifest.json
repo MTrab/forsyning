@@ -1,0 +1,16 @@
+{
+    "domain": "forsyning",
+    "name": "Forsyning",
+    "documentation": "https://github.com/MTrab/forsyning/blob/master/README.md",
+    "issue_tracker": "https://github.com/MTrab/forsyning/issues",
+    "requirements": [],
+    "after_dependencies": [
+        "http"
+    ],
+    "codeowners": [
+        "@MTrab"
+    ],
+    "version": "0.0.1",
+    "config_flow": true,
+    "iot_class": "cloud_polling"
+}
