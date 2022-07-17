@@ -10,7 +10,7 @@ from logging import getLogger
 
 __all__ = ["Connector"]
 
-_LOGGER = getLogger(__name__)
+_LOGGER = logging.getLogger(__name__)
 
 BASE_URL = "https://services.aalborgforsyning.dk/"
 SOURCE_NAME = "Aalborg forsyning"
