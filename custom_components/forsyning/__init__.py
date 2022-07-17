@@ -1,10 +1,10 @@
 """Adds support for Forsyning sensors."""
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
-import logging
 
 from aiohttp import ServerDisconnectedError
 from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
