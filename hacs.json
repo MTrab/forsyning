@@ -3,5 +3,6 @@
     "render_readme": true,
     "homeassistant": "2022.7.0",
     "zip_release": true,
-    "filename": "forsyning.zip"
+    "filename": "forsyning.zip",
+    "country": "DK"
 }
