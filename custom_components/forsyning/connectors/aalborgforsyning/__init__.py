@@ -5,8 +5,7 @@ https://aalborgforsyning.dk/erhverv/energioptimering/datadeling-for-fjernaflaest
 """
 from __future__ import annotations
 
-import aiohttp
-from logging import getLogger
+import logging
 
 __all__ = ["Connector"]
 
@@ -24,7 +23,7 @@ class Connector:
         self, client, tz, email: str, password: str  # pylint: disable=invalid-name
     ) -> None:
         """Initialize the connector."""
-        self.client: aiohttp.client = client
+        self.client = client
         self._result = {}
         self._tz = tz
         self._email = email
