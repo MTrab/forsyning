@@ -1,8 +1,8 @@
-![Current Release](https://img.shields.io/github/release/mtrab/forsyning/all.svg?style=plastic)![Github All Releases](https://img.shields.io/github/downloads/mtrab/forsyning/total.svg?style=plastic)![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=plastic)
+![Current Release](https://img.shields.io/github/release/mtrab/forsyning/all.svg?style=plastic)![Github All Releases](https://img.shields.io/github/downloads/mtrab/forsyning/total.svg?style=plastic)<!--![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=plastic)-->
 
 ![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)
 
-## Forsyning
+## Forsyning (IN DEVELOPMENT)
 
 This is a custom\_component ment for the Danish market, so further text will be in Danish
 
