@@ -9,8 +9,6 @@ from posixpath import dirname
 
 from genericpath import isdir
 
-from ..const import CURRENCY_LIST, REGIONS
-
 _LOGGER = getLogger(__name__)
 
 
@@ -30,12 +28,6 @@ class Connectors:
                 mod = import_module(api_ns, __name__)
                 con = Connector(module, f".connectors{api_ns}", mod.REGIONS)
 
-                if hasattr(mod, "EXTRA_REGIONS"):
-                    REGIONS.update(mod.EXTRA_REGIONS)
-
-                if hasattr(mod, "EXTRA_CURRENCIES"):
-                    CURRENCY_LIST.update(mod.EXTRA_CURRENCIES)
-
                 self._connectors.append(con)
 
     @property
@@ -43,13 +35,12 @@ class Connectors:
         """Return valid connectors."""
         return self._connectors
 
-    def get_connectors(self, region: str) -> list:
+    def get_connectors(self) -> list:
         """Get connector(s) of a specific zone."""
         connectors = []
 
         for connector in self._connectors:
-            if region in connector.regions:
-                Connector = namedtuple("Connector", "module namespace")
-                connectors.append(Connector(connector.module, connector.namespace))
+            Connector = namedtuple("Connector", "module namespace")
+            connectors.append(Connector(connector.module, connector.namespace))
 
         return connectors
