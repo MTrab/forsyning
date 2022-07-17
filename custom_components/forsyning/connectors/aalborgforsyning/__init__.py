@@ -3,17 +3,44 @@
 API dokumentation:
 https://aalborgforsyning.dk/erhverv/energioptimering/datadeling-for-fjernaflaeste-varmemalere/api-for-adgang-til-malerdata
 """
+# pylint: disable=dangerous-default-value
 from __future__ import annotations
 
 import logging
+import voluptuous as vol
 
-__all__ = ["Connector"]
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD
+from homeassistant.helpers import selector
+
+__all__ = ["Connector", "scheme_config_options", "SOURCE_NAME", "SCAN_INTERVAL"]
 
 _LOGGER = logging.getLogger(__name__)
 
 BASE_URL = "https://services.aalborgforsyning.dk/"
-SOURCE_NAME = "Aalborg forsyning"
+SOURCE_NAME = "Aalborg Forsyning"
 SCAN_INTERVAL = 9 * (60 * 60)  # Only allowed to poll 3 times pr. day
+
+
+def scheme_config_options(options: ConfigEntry = {}) -> dict:
+    """Return a schema for initial configuration options."""
+    if not options:
+        options = {
+            CONF_NAME: "Aalborg Forsyning",
+            CONF_USERNAME: None,
+            CONF_PASSWORD: None,
+        }
+
+    schema = {
+        vol.Required(CONF_NAME, default=options.get(CONF_NAME)): str,
+        vol.Required(CONF_USERNAME, default=options.get(CONF_USERNAME)): str,
+        vol.Required(
+            CONF_PASSWORD, default=options.get(CONF_PASSWORD)
+        ): selector.TextSelector(
+            selector.TextSelectorConfig(type=selector.TextSelectorType.PASSWORD),
+        ),
+    }
+    return schema
 
 
 class Connector:
@@ -58,7 +85,7 @@ class Connector:
 
         return []
 
-    async def async_update_api(self) -> None:
+    async def async_update(self) -> bool:
         """Update data from the API."""
         token = await self._async_authorize()
         if isinstance(token, type(None)):
@@ -67,12 +94,12 @@ class Connector:
                 "using email %s and password ***",
                 self._email,
             )
-            return None
+            return False
 
         meters = await self._async_get_meters(token)
         if len(meters) == 0:
             _LOGGER.error("Error fetching meters list")
-            return None
+            return False
 
         headers = {"Authorization": f"Bearer {token}"}
         data_url = f"{BASE_URL}/api/data?meterid="
@@ -80,5 +107,13 @@ class Connector:
         self._result.clear()
         for meter in meters:
             resp = await self.client.get(f"{data_url}{meter}", headers=headers)
-            res = await resp.json()
-            self._result.update(res[0])
+            if resp.status == 200:
+                res = await resp.json()
+                self._result.update(res[0])
+
+        return True
+
+    @property
+    def meter_data(self) -> dict:
+        """Return dict of meter data."""
+        return self._result

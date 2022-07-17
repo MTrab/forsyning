@@ -19,6 +19,8 @@ CONF_DECIMALS = "decimals"
 CONF_TEMPLATE = "cost_template"
 CONF_VAT = "vat"
 
+CONF_CONNECTOR = "connector"
+
 DATA = "data"
 DEFAULT_NAME = "Forsyning"
 DEFAULT_TEMPLATE = "{{0.0|float}}"
