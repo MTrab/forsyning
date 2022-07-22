@@ -10,7 +10,7 @@ from posixpath import dirname
 import voluptuous as vol
 from genericpath import isdir
 
-from ..const import CONF_CONNECTOR
+from ...custom_components.forsyning.const import CONF_CONNECTOR
 
 _LOGGER = getLogger(__name__)
 

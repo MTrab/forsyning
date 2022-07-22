@@ -12,7 +12,7 @@ from homeassistant.components.sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 
-from .const import DOMAIN
+from ..custom_components.forsyning.const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 

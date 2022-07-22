@@ -13,7 +13,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.dispatcher import dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
-from .const import CONF_CONNECTOR, UPDATE_SIGNAL
+from ..custom_components.forsyning.const import CONF_CONNECTOR, UPDATE_SIGNAL
 
 _LOGGER = logging.getLogger(__name__)
 

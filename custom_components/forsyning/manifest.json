@@ -3,10 +3,8 @@
     "name": "Forsyning",
     "documentation": "https://github.com/MTrab/forsyning/blob/master/README.md",
     "issue_tracker": "https://github.com/MTrab/forsyning/issues",
+    "dependencies": [],
     "requirements": [],
-    "after_dependencies": [
-        "http"
-    ],
     "codeowners": [
         "@MTrab"
     ],

@@ -1,0 +1,19 @@
+{
+    "config": {
+        "error": {
+            "invalid_template": "The additional cost template is invalid, check https://github.com/mtrab/energidataservice"
+        },
+        "abort": {
+            "already_configured": "The specified name exists!"
+        },
+        "step": {
+            "user": {
+                "title": "Select company",
+                "data": {
+                    "password": "Password"
+                },
+                "description": "Set initial info for integration"
+            }
+        }
+    }
+}
